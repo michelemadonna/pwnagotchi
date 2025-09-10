@@ -441,15 +441,19 @@ The [internet_connection plugin](https://github.com/jayofelony/pwnagotchi-torch-
 ## External USB WiFi adapter
 If you are using an external USB WiFi adapter for additional WiFi capabilities (like 5Ghz support), you may need to configure pwnagotchi to use it for scanning and capturing handshakes. 
 By default, pwnagotchi uses the built-in WiFi interface (wlan0) for all operations. To use an external adapter, follow these steps:
-1. Edit the raspberry pi's config.txt file:
+1. Edit the `config.toml` file to configure the hashieclean plugin:
+    ```toml
+    main.plugins.fix-services.enabled = false # Disable the plugin
+    ```
+2. Edit the raspberry pi's config.txt file:
     ```bash
     sudo nano /boot/firmware/config.txt
     ```
-2. Comment out `dtoverlay=disable-wifi` under `[pi0]` to disable the built-in WiFi:
+3. Comment out `dtoverlay=disable-wifi` under `[pi0]` to disable the built-in WiFi:
     ```
     dtoverlay=disable-wifi
     ```
-3. Save and exit the editor. Reboot the Raspberry Pi to apply the changes
+4. Save and exit the editor. Reboot the Raspberry Pi to apply the changes
 
 ## GPSD connection watchdog
 This script monitors the Bluetooth connection between your pwnagotchi and your smartphone and the status of the GPSD service. If the connection drops, it attempts to reconnect automatically. This is useful for maintaining a stable internet connection via Bluetooth tethering.
