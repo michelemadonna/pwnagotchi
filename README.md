@@ -15,7 +15,7 @@ To use this configuration, you will need the following hardware components:
 - **MicroSD Card**: At least 16GB capacity for storing the pwnagotchi image and data.
 - **Power Supply**: A reliable power source for the Raspberry Pi Zero 2W.
 - **Optional Accessories**:
-    - Waveshare 2.13 V4 e-Paper display (or compatible display) for visual feedback.
+    - [Waveshare 2.13 V4](https://a.aliexpress.com/_EwOnJUW) e-Paper display (or compatible display) for visual feedback.
     - Case or enclosure for the Raspberry Pi and display.
     - USB WiFi adapter (if additional WiFi capabilities are needed like 5Ghz support. Ensure it supports monitor mode and packet injection. [here](https://github.com/morrownr/USB-WiFi/blob/main/home/Recommended_Adapters_for_Kali_Linux.md) is a good list of compatible adapters.
     - Bluetooth-enabled device for tethering (e.g., smartphone).
