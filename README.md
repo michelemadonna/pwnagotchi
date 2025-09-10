@@ -252,7 +252,7 @@ sudo systemctl restart gpsd
 ## Plugins
 This configuration includes several useful plugins to enhance the functionality of pwnagotchi. 
 ### WARDRIVER PLUGIN
-The [wardriver plugin](https://github.com/cyberartemio/wardriver-pwnagotchi-plugin) adds support for wardriving features, allowing your pwnagotchi to automatically log and map Wi-Fi networks as you drive around. Also Automatic and manual upload of wardriving sessions to [WiGLE.net](https://wigle.net) is supported. TIn order to be able to upload your discovered networks to WiGLE, you need to register a valid API key for your account. Follow these steps to get your key:
+The [wardriver plugin](https://github.com/cyberartemio/wardriver-pwnagotchi-plugin) adds support for wardriving features, allowing your pwnagotchi to automatically log and map Wi-Fi networks as you drive around. Also Automatic and manual upload of wardriving sessions to [WiGLE.net](https://wigle.net) is supported. In order to be able to upload your discovered networks to WiGLE, you need to register a valid API key for your account. Follow these steps to get your key:
     - Open (https://wigle.net/account)[https://wigle.net/account] and login using your WiGLE account
     - Click on Show my token
     - Copy the value for Encoded for use: textbox
