@@ -338,7 +338,7 @@ The [instattack plugin](https://github.com/Sniffleupagus/pwnagotchi_plugins/blob
     sudo systemctl restart pwnagotchi
 
 ### HANDSHAKES-DL-HASHIE PLUGIN
-The [handshakes-dl-hashie plugin](https://github.com/PwnPeter/pwnagotchi-plugins) Download handshake captures from web-ui + handshake converted in hashcat format with hashie-hcxpcapngtool.py
+The [handshakes-dl-hashie plugin](https://github.com/PwnPeter/pwnagotchi-plugins) Download handshake captures from web-ui + handshake converted in hashcat format with hashie-hcxpcapngtool or hashieclean.
 1. Add the plugin repository to your `config.toml` file if not already present:
     ```toml
     main.custom_plugins_repos = [
@@ -399,7 +399,7 @@ The tool currently depends on hcxpcapngtool from the [hcxtools suite](https://gi
     sudo systemctl restart pwnagotchi
     ```
 ### IPDISPLAY PLUGIN
-The [IPDisplay plugin](https://github.com/NeonLightning/pwny) displays the current IP address of the pwnagotchi on the e-ink display. This is particularly useful when using Bluetooth tethering, as it allows you to easily see the IP address assigned by your smartphone.
+The [IPDisplay plugin](https://github.com/NeonLightning/pwny) displays the current IP address of the pwnagotchi on the pwnagotchi screen. This is particularly useful when using Bluetooth tethering, as it allows you to easily see the IP address assigned by your smartphone.
 1. Install the IPDisplay plugin:
     ```bash
     sudo pwnagotchi plugins install IPDisplay
@@ -414,7 +414,7 @@ The [IPDisplay plugin](https://github.com/NeonLightning/pwny) displays the curre
     sudo systemctl restart pwnagotchi
     ```
 ### INTERNET_CONNECTION PLUGIN
-The [internet_connection plugin](https://github.com/jayofelony/pwnagotchi-torch-plugins) monitors the internet connection status of your pwnagotchi and displays it on the e-ink display. 
+The [internet_connection plugin](https://github.com/jayofelony/pwnagotchi-torch-plugins) monitors the internet connection status of your pwnagotchi and displays it on the screen. 
 1. Install the internet_connection plugin:
     ```bash
     sudo pwnagotchi plugins install internet_connection
@@ -442,7 +442,7 @@ The [internet_connection plugin](https://github.com/jayofelony/pwnagotchi-torch-
 ## External USB WiFi adapter
 If you are using an external USB WiFi adapter for additional WiFi capabilities (like 5Ghz support), you may need to configure pwnagotchi to use it for scanning and capturing handshakes. 
 By default, pwnagotchi uses the built-in WiFi interface (wlan0) for all operations. To use an external adapter, follow these steps:
-1. Edit the `config.toml` file to configure the hashieclean plugin:
+1. Edit the `config.toml` file to disable the `fix-service` plugin:
     ```toml
     main.plugins.fix-services.enabled = false # Disable the plugin
     ```
