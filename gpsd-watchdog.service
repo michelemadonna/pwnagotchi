@@ -1,0 +1,13 @@
+[Unit]
+Description=Watchdog GPSD per Pwnagotchi
+After=network.target
+
+[Service]
+ExecStart=/usr/local/bin/gpsd_watchdog.sh
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
