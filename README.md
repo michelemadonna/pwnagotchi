@@ -5,7 +5,7 @@ This repository contains my personal configuration files for [pwnagotchi](https:
 
 > ⚠️ **Note:** This configuration has been tested with jayofenoly's pwnagotchi version **2.9.5.1** on a **Raspberry Pi Zero 2W** using a **Waveshare 2.13 V4 display**.
 
-#DISCLAIMER
+# DISCLAIMER
 **This repository is intended for educational purposes only. Unauthorized access to computer systems is illegal and unethical. Always ensure you have explicit permission to test and audit any network or system. The author is not responsible for any misuse of the information provided in this repository.**
 
 # Hardware Requirements
