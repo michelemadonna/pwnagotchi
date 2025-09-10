@@ -46,7 +46,8 @@ To set up pwnagotchi with my configuration, follow these steps:
     ```bash
     sudo ./linux_connection_share.sh
     ```
-The script will set up IP forwarding and configure iptables to share the internet connection with the Pwnagotchi.
+    The script will set up IP forwarding and configure iptables to share the internet connection with the Pwnagotchi.
+
 8. SSH into the pwnagotchi using the following command:
     ```bash
     ssh pi@10.0.0.2 or ssh pi@pwnagotchi.local
