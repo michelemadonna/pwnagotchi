@@ -302,14 +302,8 @@ If needed restart the gpsd service:
 sudo systemctl restart gpsd
 ```
 ### WPA-SEC PLUGIN
-The [wpa-sec plugin](https://github.com/cyberartemio/wpa-sec-pwnagotchi-plugin) adds support for WPA-SEC features, allowing your pwnagotchi to automatically upload captured handshakes to [WPA-SEC](https://wpa-sec.stanev.org/) for cracking. In order to be able to upload your captured handshakes to WPA-SEC, you need to register a valid API key for your account.
-1. Remove the default wpa-sec plugin if already installed and install the Evilsocket's version:
-    ```bash
-    sudo pwnagotchi plugins uninstall wpa-sec
-    cd /usr/local/share/pwnagotchi/plugins/custom
-    sudo wget https://raw.githubusercontent.com/evilsocket/pwnagotchi/refs/heads/master/pwnagotchi/plugins/default/wpa-sec.py
-    ```
-2. Edit the `config.toml` file to configure the wpa-sec plugin:
+The [wpa-sec plugin](https://github.com/jayofelony/pwnagotchi/blob/noai/pwnagotchi/plugins/default/wpa-sec.py) adds support for WPA-SEC features, allowing your pwnagotchi to automatically upload captured handshakes to [WPA-SEC](https://wpa-sec.stanev.org/) for cracking. In order to be able to upload your captured handshakes to WPA-SEC, you need to register a valid API key for your account.
+1. Edit the `config.toml` file to configure the wpa-sec plugin:
     ```toml
     main.plugins.wpa-sec.enabled = true
     main.plugins.wpa-sec.api_key = "xyz..." # WPA-SEC API key
@@ -318,7 +312,7 @@ The [wpa-sec plugin](https://github.com/cyberartemio/wpa-sec-pwnagotchi-plugin) 
     main.plugins.wpa-sec.show_pwd = true
     main.plugins.wpa-sec.whitelist = [] # OPTIONAL: networks whitelist aka don't upload these networks.SSIDs in main.whitelist will always be ignored
     ```
-3. Save and exit the editor. Restart the pwnagotchi service to apply the changes:
+2. Save and exit the editor. Restart the pwnagotchi service to apply the changes:
     ```bash
     sudo systemctl restart pwnagotchi
     ```
@@ -351,10 +345,23 @@ The [handshakes-dl-hashie plugin](https://github.com/PwnPeter/pwnagotchi-plugins
     sudo pwnagotchi plugins install handshakes-dl-hashie
     sudo systemctl restart pwnagotchi
     ```
-3. Edit the `config.toml` file to configure the handshakes-dl-hashie plugin:
+3. Fix the plugin error on downloads:
+    ```bash
+    custom #this command cd to the custom plugins directory
+    sudo nano handshakes-dl-hashie.py
+    ```
+    - Change the line:
+    ```python
+    return send_from_directory(directory=dir, filename=path, as_attachment=True)
+    to
+    return send_from_directory(directory=dir, path=path, as_attachment=True)
+    ```
+    save and exit the editor.
+4. Edit the `config.toml` file to configure the handshakes-dl-hashie plugin:
     ```toml
     main.plugins.handshakes-dl-hashie.enabled = true # Enable the plugin
     ```
+
 4. Save and exit the editor. Restart the pwnagotchi service to apply the changes:
     ```bash
     sudo systemctl restart pwnagotchi
@@ -471,6 +478,11 @@ This script monitors the Bluetooth connection between your pwnagotchi and your s
     sudo nano /usr/local/bin/gpsd_watchdog.sh
     ```
     - Replace `<PHONE_BT_MAC>` with your smartphone's Bluetooth MAC address.
+    - Replace `<PHONE_BT_IP>` with your smartphone's Bluetooth IP address.
+    - Replace `<PHONE_BT_NETWORK_NAME>` with your smartphone's network name. You can find with
+    ```bash
+    nmcli connection show
+    ```
     - Save and exit the editor.
 3. Enable and start the `gpsd-watchdog` service:
     ```bash
