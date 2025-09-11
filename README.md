@@ -55,7 +55,6 @@ To set up pwnagotchi with my configuration, follow these steps:
     - The default password is `raspberry`.
 
 # Post-Installation Steps
-
 1. Once logged in, update the system and install `git` and `wget` if not already installed:
     ```bash
     sudo apt update
@@ -73,8 +72,8 @@ To set up pwnagotchi with my configuration, follow these steps:
     - set the whitelist SSIDs to avoid connecting to known networks modifying the lines:
     ```toml
     main.whitelist = [
-      "<FIST_WHITLISTED_SSID>",
-      "<FIST_WHITLISTED_ESSID",
+      "<FIRST_WHITELISTED_SSID>",
+      "<FIRST_WHITELISTED_ESSID>",
     ]
     ```
     - add more plugins repository modifying the lines:
@@ -156,28 +155,33 @@ Once Internet Sharing is active, you can proceed with Bluetooth pairing.
     ```
     - Inside the `bluetoothctl` prompt, enable the agent and set it as default:
     ```
-    agent on
-    default-agent
     scan on # wait until you see your phone MAC address
     trust <PHONE_BT_MAC> #once you see your phone MAC address replace <PHONE_BT_MAC> with it
     pair <PHONE_BT_MAC>
+    exit
     ``` 
     - You may be prompted to confirm the pairing on your smartphone. Accept the pairing request.
+2. Install the version 1.4 of `bt-tether` plugin:
+    ```bash
+    sudo pwnagotchi plugin uninstall bt-tether
+    custom #this command cd to the custom plugins directory
+    sudo wget https://raw.githubusercontent.com/jayofelony/pwnagotchi/refs/heads/noai/pwnagotchi/plugins/default/bt-tether.py
+    ```
 2. After pairing, edit the `config.toml` file to enable and configure the `bt-tether` plugin:
     ```toml
     main.plugins.bt-tether.enabled = true
     main.plugins.bt-tether.phone-name = "<PHONE_BT_NAME>" # name as shown on the phone i.e. "Galaxy Tab S2"
     main.plugins.bt-tether.mac = "<PHONE_BT_MAC>"
     main.plugins.bt-tether.phone = "<PHONE_BT_TYPE>" #ios or android
-    main.plugins.bt-tether.ip = "<PHONE_BT_IP>" #192.168.44.2-254    android / 172.20.10.2-14    ios
+    main.plugins.bt-tether.ip = "<PWNAGOTCHI_BT_IP>" #192.168.44.2-254    android / 172.20.10.2-14    ios
     ```
     - Save and exit the editor. Restart the pwnagotchi service to apply the changes:
     ```bash
     sudo systemctl restart pwnagotchi
     ```
 Your pwnagotchi should now connect to the internet via Bluetooth tethering when available via :
-- SSH to `pi@<PHONE_BT_IP>`
-- Web UI at `http://<PHONE_BT_IP>:8080` (user: `changeme`, password: `changeme`)
+- SSH to `pi@<PWNAGOTCHI_BT_IP>` on your smartphone.
+- Web UI at `http://<PWNAGOTCHI_BT_IP>:8080` (user: `changeme`, password: `changeme`) on your smartphone.
 
 ## GPS Configuration
 To enable GPS functionality for geolocation tagging of captured networks, you will need a GPS module compatible with Raspberry Pi or use the GPS functionality of your smartphone if tethering via Bluetooth.
