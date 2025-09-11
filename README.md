@@ -6,7 +6,7 @@ This repository contains my personal configuration files for [pwnagotchi](https:
 > ⚠️ **Note:** This configuration has been tested with jayofenoly's pwnagotchi version **2.9.5.1** on a **Raspberry Pi Zero 2W** using a **Waveshare 2.13 V4 display**.
 
 # DISCLAIMER
-**This repository is intended for educational purposes only. Unauthorized access to computer systems is illegal and unethical. Always ensure you have explicit permission to test and audit any network or system. The author is not responsible for any misuse of the information provided in this repository.**
+**⚠️ This repository is intended for educational purposes only. Unauthorized access to computer systems is illegal and unethical. Always ensure you have explicit permission to test and audit any network or system. The author is not responsible for any misuse of the information provided in this repository. ⚠️**
 
 # Hardware Requirements
 To use this configuration, you will need the following hardware components:
@@ -58,7 +58,7 @@ To set up pwnagotchi with my configuration, follow these steps:
 
 1. Once logged in, update the system and install `git` and `wget` if not already installed:
     ```bash
-    sudo apt update && sudo apt upgrade -y
+    sudo apt update
     sudo apt install git wget -y
     ```
 2. Copy the default configuration used as a template to create `config.toml`:
