@@ -305,7 +305,7 @@ sudo systemctl restart gpsd
 The [wpa-sec plugin](https://github.com/cyberartemio/wpa-sec-pwnagotchi-plugin) adds support for WPA-SEC features, allowing your pwnagotchi to automatically upload captured handshakes to [WPA-SEC](https://wpa-sec.stanev.org/) for cracking. In order to be able to upload your captured handshakes to WPA-SEC, you need to register a valid API key for your account.
 1. Remove the default wpa-sec plugin if already installed and install the Evilsocket's version:
     ```bash
-    sudo pwnagotchi plugins remove wpa-sec
+    sudo pwnagotchi plugins uninstall wpa-sec
     cd /usr/local/share/pwnagotchi/plugins/custom
     sudo wget https://raw.githubusercontent.com/evilsocket/pwnagotchi/refs/heads/master/pwnagotchi/plugins/default/wpa-sec.py
     ```
