@@ -359,7 +359,8 @@ The [handshakes-dl-hashie plugin](https://github.com/PwnPeter/pwnagotchi-plugins
     ```bash
     sudo systemctl restart pwnagotchi
     ```
-### HASHIECLEAN PLUGIN
+### HASHIECLEAN PLUGIN (REQUIRES HCXTOOLS)
+> ⚠️ **Alert:** Hashieclean plugin modifies your pcap files. Seems that not like to wpa-sec plugin. It is recommended to backup your pcap files before enabling this plugin.
 The [hashieclean plugin](https://github.com/arturandre/pwnagotchi-beacon-plugins) plugin streamlines the conversion of wireless packet capture files (pcaps) into Hashcat-compatible formats for password cracking. It intelligently filters out "lonely pcaps"—captures lacking enough data for usable hashes—which previously slowed down plugin loading. By improving handshake completeness checks, it now loads and performs more efficiently.
 
 When processing a pcap, the plugin extracts EAPOL or PMKID handshakes and saves them in the appropriate Hashcat formats: `.22000` for EAPOL and `.16800` for PMKID. Pcaps without sufficient cracking data are still preserved in a format compatible with the webgpsmap plugin, allowing users to revisit those networks later for more data.
@@ -413,15 +414,15 @@ The [IPDisplay plugin](https://github.com/NeonLightning/pwny) displays the curre
     sudo systemctl restart pwnagotchi
     ```
 ### INTERNET_CONNECTION PLUGIN
-The [internet_connection plugin](https://github.com/jayofelony/pwnagotchi-torch-plugins) monitors the internet connection status of your pwnagotchi and displays it on the screen. 
+The [internet-connection plugin](https://github.com/jayofelony/pwnagotchi-torch-plugins) monitors the internet connection status of your pwnagotchi and displays it on the screen. 
 1. Install the internet_connection plugin:
     ```bash
-    sudo pwnagotchi plugins install internet_connection
+    sudo pwnagotchi plugins install internet-connection
     ```
 2. Fix the plugin info location on the display:
     ```bash
     custom #this command cd to the custom plugins directory
-    sudo nano internet_connection.py
+    sudo nano internet-connection.py
     ```
     - Change the line:
     ```python
