@@ -167,7 +167,7 @@ Once Internet Sharing is active, you can proceed with Bluetooth pairing.
     custom #this command cd to the custom plugins directory
     sudo wget https://raw.githubusercontent.com/jayofelony/pwnagotchi/refs/heads/noai/pwnagotchi/plugins/default/bt-tether.py
     ```
-2. After pairing, edit the `config.toml` file to enable and configure the `bt-tether` plugin:
+3. After pairing, edit the `config.toml` file to enable and configure the `bt-tether` plugin:
     ```toml
     main.plugins.bt-tether.enabled = true
     main.plugins.bt-tether.phone-name = "<PHONE_BT_NAME>" # name as shown on the phone i.e. "Galaxy Tab S2"
@@ -213,10 +213,7 @@ To enable GPS in pwnagotchi, follow these steps:
     GPSD_OPTIONS="-n" # add -D3 if you need to debug
     ```
     - Save and exit the editor.
-    - Restart the gpsd service to apply the changes:
-    ```bash
-    sudo systemctl restart gpsd
-    ```
+
 
 3. On your smartphone, install a GPS sharing app:
     - **iPhone**: Use an app like [GPS2IP](https://apps.apple.com/us/app/gps-2-ip/id408625926) (You can test the "lite" version for free [GPS2IP Lite](https://apps.apple.com/us/app/gps2ip-lite/id1562823492)) to share GPS data over Bluetooth.
@@ -232,7 +229,17 @@ To enable GPS in pwnagotchi, follow these steps:
         - A new NEMEA service should appear in the main screen. Enable it then click on the "Play" button to start the service.
 
 In both cases activate `GGA messages` to have "3D fix"
-Check your `gpsd` configuration with `gpsmon` or `cgps`.
+
+4. Restart the gpsd service on pwnagotchi to apply the changes:
+    ```bash
+    sudo systemctl restart gpsd
+    ```
+    - Check the gpsd status:
+    ```bash
+    sudo systemctl status gpsd
+    ```
+
+Check your `gpsd` configuration with `cgps`.
 
 4. Install and configure the [gpsd-ng](https://github.com/fmatray/pwnagotchi_GPSD-ng) plugin for pwnagotchi:
     ```bash
@@ -259,7 +266,7 @@ This configuration includes several useful plugins to enhance the functionality 
 The [wardriver plugin](https://github.com/cyberartemio/wardriver-pwnagotchi-plugin) adds support for wardriving features, allowing your pwnagotchi to automatically log and map Wi-Fi networks as you drive around. Also Automatic and manual upload of wardriving sessions to [WiGLE.net](https://wigle.net) is supported. In order to be able to upload your discovered networks to WiGLE, you need to register a valid API key for your account. Follow these steps to get your key:
     - Open (https://wigle.net/account)[https://wigle.net/account] and login using your WiGLE account
     - Click on Show my token
-    - Copy the value for Encoded for use: textbox
+    - Copy the value in Encoded for use textbox.
 
 1. Add the plugin repository to your `config.toml` file if not already present:
     ```toml
@@ -272,29 +279,17 @@ The [wardriver plugin](https://github.com/cyberartemio/wardriver-pwnagotchi-plug
     ```bash
     sudo pwnagotchi plugins update
     sudo pwnagotchi plugins install wardriver
-    sudo systemctl restart pwnagotchi
     ```
 3. Edit the `config.toml` file to configure the wardriver plugin:
     ```toml
-    
     main.plugins.wardriver.enabled = true # Enable the plugin
-    main.plugins.wardriver.path = "/root/wardriver" # Path where SQLite db will be saved
-
-    main.plugins.wardriver.ui.enabled = true # Enable UI status text
-    main.plugins.wardriver.ui.icon = true # Enable icon on display
-    main.plugins.wardriver.ui.icon_reverse = false # Set to true if black bg, false if white bg
-    main.plugins.wardriver.ui.position.x = 7 # Position of UI status text
-    main.plugins.wardriver.ui.position.y = 95
-
     main.plugins.wardriver.wigle.enabled = true # Enable WiGLE upload
     main.plugins.wardriver.wigle.api_key = "xyz..." # WiGLE API key (encoded)
     main.plugins.wardriver.wigle.donate = false # Enable commercial use of your reported data
-
     main.plugins.wardriver.whitelist = [
         "network-1",
         "network-2"
     ] # OPTIONAL: networks whitelist aka don't log these networks.SSIDs in main.whitelist will always be ignored
-    
     # GPS configuration
     main.plugins.wardriver.gps.method = "gpse" # for use gpsd
     ```
