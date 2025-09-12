@@ -42,7 +42,7 @@ while true; do
                 #log_command "bluetoothctl disconnect $DEVICE_MAC"
                 #sleep 3
                 #log_command "nmcli device disconnect $DEVICE_MAC"
-                l
+                
                 #sleep 1
                 log_command "nmcli connection up '$PHONE_NETWORK_NAME'"
                 sleep 5
@@ -63,6 +63,5 @@ while true; do
     if tail -n 1 "$LOG_FILE" | grep -i -v "gpsd" | grep -q "handshakes will be collected inside"; then
         systemctl restart pwnagotchi
     fi
-    bluetooth connect $DEVICE_MAC
 
 done
